@@ -1,21 +1,48 @@
 import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from '@expo/vector-icons';
+
 import HomeScreen from './screens/HomeScreen';
 import DetailsScreen from './screens/DetailsScreen';
 import AboutScreen from './screens/AboutScreen';
 import AdminScreen from './screens/AdminScreen';
 
-const Stack = createStackNavigator()
+const Tab = createBottomTabNavigator()
 
-export default function App(){
-  return(
+export default function App() {
+  return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen}/>
-        <Stack.Screen name="About" component={AboutScreen}/>
-        <Stack.Screen name="Admin" component={AdminScreen}/>
-      </Stack.Navigator>
+      <Tab.Navigator initialRouteName='Home'>
+        <Tab.Screen name="Home"
+          component={HomeScreen}
+          options={{
+            title: 'Início',
+            tabBarIcon: ({ color, size }) =>
+            (<Ionicons name='home-outline' color={color} size={size} />
+            )
+          }} />
+        <Tab.Screen name="Details" component={DetailsScreen}
+          options={{
+            title: 'Details',
+            tabBarIcon: ({ color, size }) =>
+            (<Ionicons name='bag-outline' color={color} size={size} />
+            )
+          }} />
+        <Tab.Screen name="About" component={AboutScreen}
+          options={{
+            title: 'Sobre',
+            tabBarIcon: ({ color, size }) =>
+            (<Ionicons name='airplane-outline' color={color} size={size} />
+            )
+          }} />
+        <Tab.Screen name="Admin" component={AdminScreen}
+          options={{
+            title: 'Admin',
+            tabBarIcon: ({ color, size }) =>
+            (<Ionicons name='bag' color={color} size={size} />
+            )
+          }} />
+      </Tab.Navigator>
     </NavigationContainer>
   )
 }
